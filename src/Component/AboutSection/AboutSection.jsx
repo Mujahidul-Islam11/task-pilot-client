@@ -8,7 +8,7 @@ const AboutSection = () => {
     const {user} = useContext(AuthContext)
     const navigate = useNavigate()
   return (
-    <section className="bg-base-200 rounded-lg py-16 px-4 border my-4">
+    <section className="bg-[#7C93C3] rounded-lg py-16 px-4 border my-4">
       <div className="container mx-auto text-center">
         <h2 className="text-4xl font-bold mb-8">About TaskPilot</h2>
         <p className="text-lg text-gray-700 leading-relaxed max-w-2xl mx-auto">

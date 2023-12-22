@@ -6,57 +6,13 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const SocialLogin = () => {
-    const {GoogleSignIn, GithubSignIn} = useContext(AuthContext)
+    const {GoogleSignIn} = useContext(AuthContext)
     const navigate = useNavigate()
     const handleGSignIn = () =>{
         GoogleSignIn()
         .then(result =>{
             console.log(result.user)
-            navigate(result.user && '/')
-            if(result.user){
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 2000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                      toast.onmouseenter = Swal.stopTimer;
-                      toast.onmouseleave = Swal.resumeTimer;
-                    }
-                  });
-                  Toast.fire({
-                    icon: "success",
-                    title: "Signed in successfully"
-                  });
-            }
-        })
-        .catch(error =>{
-            console.error(error)
-            if(error){
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 2000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                      toast.onmouseenter = Swal.stopTimer;
-                      toast.onmouseleave = Swal.resumeTimer;
-                    }
-                  });
-                  Toast.fire({
-                    icon: "success",
-                    title: "Authentication error"
-                  });
-            }
-        })
-    }
-    const handleGitSignIn = () =>{
-        GithubSignIn()
-        .then(result =>{
-            console.log(result.user)
-            navigate(result.user && '/')
+            navigate(result.user && '/dash/todo')
             if(result.user){
                 const Toast = Swal.mixin({
                     toast: true,
@@ -99,12 +55,9 @@ const SocialLogin = () => {
   return (
     <div>
       <div className="flex justify-center items-center gap-6">
-        <button onClick={()=> handleGSignIn()} className="btn text-white btn-error bg-red-600 ">
-          <TiSocialGooglePlus className="text-2xl"></TiSocialGooglePlus>
-        </button>
-        <button onClick={()=> handleGitSignIn()} className="btn text-white btn-primary bg-blue-800">
-          <FaGithub className="text-xl"></FaGithub>
-        </button>
+        <button onClick={()=> handleGSignIn()} className="btn w-full px-4 text-white btn-error bg-red-600 ">
+          <TiSocialGooglePlus className="text-3xl "></TiSocialGooglePlus>
+        </button> 
       </div>
       <div className="divider">OR</div>
     </div>

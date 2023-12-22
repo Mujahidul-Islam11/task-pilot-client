@@ -8,7 +8,7 @@ const Banner = () => {
     const navigate = useNavigate()
 
   return (
-    <div className="hero min-h-screen bg-base-200 rounded-lg mb-6">
+    <div className="hero min-h-screen bg-[#7C93C3] rounded-lg my-6">
       <div className="hero-content flex-col lg:flex-row-reverse gap-6">
         <img
           src="https://i.postimg.cc/RVtWgzxM/Free-Vector-Man-holding-a-clock-time-management-concept-removebg-preview.png"

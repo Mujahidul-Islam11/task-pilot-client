@@ -10,6 +10,10 @@ import AuthProvider from "./AuthProvider/AuthProvider.jsx";
 import AboutSection from "./Component/AboutSection/AboutSection.jsx";
 import Task from "./Component/Task/Task.jsx";
 import Dashboard from "./Component/Dashboard/Dashboard.jsx";
+import Completed from "./Component/Dashboard/Completed.jsx";
+import Ongoing from "./Component/Dashboard/Ongoing.jsx";
+import TodoList from "./Component/Dashboard/TodoList.jsx";
+import DisplaySection from "./Component/DisplaySection/DisplaySection.jsx";
 
 const router = createBrowserRouter([
   {
@@ -25,8 +29,8 @@ const router = createBrowserRouter([
         element: <AboutSection></AboutSection>,
       },
       {
-        path: "/task",
-        element: <Task></Task>,
+        path: "/dis",
+        element: <DisplaySection></DisplaySection>,
       },
     ],
   },
@@ -43,7 +47,16 @@ const router = createBrowserRouter([
     element: <Dashboard></Dashboard>,
     children: [
       {
-        
+        path: 'com',
+        element: <Completed></Completed>
+      },
+      {
+        path: 'todo',
+        element: <TodoList></TodoList>
+      },
+      {
+        path: 'on',
+        element: <Ongoing></Ongoing>
       }
     ]
   },

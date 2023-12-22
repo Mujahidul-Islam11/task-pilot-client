@@ -22,7 +22,7 @@ const Login = () => {
         .then(result =>
         {
             console.log(result.user)
-            navigate(result.user && '/')
+            navigate(result.user && '/dash/todo')
             if(result.user){
               const Toast = Swal.mixin({
                   toast: true,

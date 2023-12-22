@@ -35,15 +35,15 @@ const Navbar = () => {
         <NavLink to={"/about"}>About</NavLink>
       </li>
       <li className="ml-4">
-        <NavLink to={"/task"}>Task</NavLink>
+        <NavLink to={"/dis"}>Audience</NavLink>
       </li>
       <li className="ml-4">
-        <NavLink to={"/dash"}>Dashboard</NavLink>
+        <NavLink to={"/dash/todo"}>Dashboard</NavLink>
       </li>
     </>
   );
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-[#7C93C3]">
       <div className="navbar-start py-5 ">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
