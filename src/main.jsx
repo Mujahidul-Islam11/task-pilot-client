@@ -10,10 +10,11 @@ import AuthProvider from "./AuthProvider/AuthProvider.jsx";
 import AboutSection from "./Component/AboutSection/AboutSection.jsx";
 import Task from "./Component/Task/Task.jsx";
 import Dashboard from "./Component/Dashboard/Dashboard.jsx";
-import Completed from "./Component/Dashboard/Completed.jsx";
-import Ongoing from "./Component/Dashboard/Ongoing.jsx";
 import TodoList from "./Component/Dashboard/TodoList.jsx";
 import DisplaySection from "./Component/DisplaySection/DisplaySection.jsx";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import PrivateRoute from "./PrivateRoute.jsx";
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
@@ -44,28 +45,27 @@ const router = createBrowserRouter([
   },
   {
     path: "/dash",
-    element: <Dashboard></Dashboard>,
+    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children: [
-      {
-        path: 'com',
-        element: <Completed></Completed>
-      },
+      
       {
         path: 'todo',
-        element: <TodoList></TodoList>
+        element: <PrivateRoute><TodoList></TodoList></PrivateRoute>
       },
       {
-        path: 'on',
-        element: <Ongoing></Ongoing>
-      }
+        path: 'task',
+        element: <PrivateRoute><Task></Task></PrivateRoute>
+      },
     ]
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    <QueryClientProvider client={queryClient}>
     <AuthProvider>
     <RouterProvider router={router}></RouterProvider>
     </AuthProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 );

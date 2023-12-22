@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
-import { HiCog6Tooth } from "react-icons/hi2";
 
 const Navbar = () => {
   const { user, LogOut } = useContext(AuthContext);
@@ -82,16 +81,9 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         {user ? (
-          <details className="dropdown dropdown-left">
-            <summary className="m-1 btn">
-              <HiCog6Tooth className="text-2xl"></HiCog6Tooth>
-            </summary>
-            <ul className="dropdown-content">
-              <button onClick={() => handleLogOut()} className="btn">
-                LogOut
-              </button>
-            </ul>
-          </details>
+          <button onClick={() => handleLogOut()} className="btn btn-primary">
+          LogOut
+        </button>
         ) : (
           <NavLink to={"/Login"}>
             <button className="btn btn-primary">Login</button>

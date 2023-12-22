@@ -1,29 +1,48 @@
 import { useContext } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
-import { FaCheckCircle, FaHome, FaPlayCircle, FaTasks } from "react-icons/fa";
+import { FaHome, FaTasks } from "react-icons/fa";
+import { BiTask } from "react-icons/bi";
+import Swal from "sweetalert2";
 
 const Dashboard = () => {
-  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const { user, LogOut } = useContext(AuthContext);
+
+  
+  const handleLogOut = () => {
+    LogOut();
+    navigate("/");
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      },
+    });
+    Toast.fire({
+      icon: "success",
+      title: "Logged out successfully",
+    });
+  };
+
+
   const links = (
     <>
       <li className="font-semibold">
         <NavLink to={"/dash/todo"}>
-          {" "}
-          <FaTasks className="text-xl"></FaTasks> 
+          <FaTasks className="text-xl"></FaTasks>
           <span className="hidden md:block">To-Do List</span>
         </NavLink>
       </li>
       <li className="font-semibold">
-        <NavLink to={"/dash/com"}>
-          <FaCheckCircle className="text-xl" />
-          <span className="hidden md:block">Completed</span>
-        </NavLink>
-      </li>
-      <li className="font-semibold">
-        <NavLink to={"/dash/on"}>
-          <FaPlayCircle className="text-xl" />
-          <span className="hidden md:block">OnGoing</span>
+        <NavLink to={"/dash/task"}>
+          <BiTask className="text-xl"></BiTask>
+          <span className="hidden md:block">Tasks</span>
         </NavLink>
       </li>
       <div className="divider"></div>
@@ -34,6 +53,8 @@ const Dashboard = () => {
         </NavLink>
       </li>
     </>
+
+
   );
   return (
     <div className="flex container mx-auto mt-6">
@@ -41,8 +62,11 @@ const Dashboard = () => {
         <div className="rounded-xl bg-[#7C93C3] text-black  mb-4 shadow-xl text-center py-4 px-4">
           <img src={user?.photoURL} className="rounded-full mb-3 mx-auto" />
           <h2 className="mb-3 font-bold">{user?.displayName}</h2>
-          <button className="btn btn-primary text-center hover:text-white
-           hover:shadow-xl">
+          <button
+            onClick={() => handleLogOut()}
+            className="btn btn-primary text-center hover:text-white
+           hover:shadow-xl"
+          >
             LogOut
           </button>
         </div>

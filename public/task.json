@@ -1,0 +1,43 @@
+[
+    {
+      "id": 1,
+      "title": "Complete Project Proposal",
+      "description": "Draft and submit the project proposal by end of the day.",
+      "deadline": "2023-12-31",
+      "priority": "high",
+      "status": "pending"
+    },
+    {
+      "id": 2,
+      "title": "Review Code Changes",
+      "description": "Review and merge the latest code changes from the development branch.",
+      "deadline": "2023-12-25",
+      "priority": "moderate",
+      "status": "pending"
+    },
+    {
+      "id": 3,
+      "title": "Client Meeting",
+      "description": "Attend the scheduled client meeting to discuss project updates and feedback.",
+      "deadline": "2023-12-20",
+      "priority": "high",
+      "status": "completed"
+    },
+    {
+      "id": 4,
+      "title": "Bug Fixes",
+      "description": "Address and fix reported bugs in the application.",
+      "deadline": "2023-12-28",
+      "priority": "moderate",
+      "status": "completed"
+    },
+    {
+      "id": 5,
+      "title": "Prepare Monthly Report",
+      "description": "Compile and prepare the monthly report for team review.",
+      "deadline": "2023-12-15",
+      "priority": "low",
+      "status": "pending"
+    }
+  ]
+  
