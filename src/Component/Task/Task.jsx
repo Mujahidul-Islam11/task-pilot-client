@@ -18,7 +18,7 @@ const Task = () => {
     >
       <div>
         <h2 className="text-xl text-center font-semibold text-black">
-          ToDo
+          OnGoing
         </h2>
         <div className="overflow-x-auto">
           <table className="table">
@@ -51,38 +51,6 @@ const Task = () => {
       <div>
         <h2 className="text-xl text-center font-semibold text-black">
           Completed
-        </h2>
-        <div className="overflow-x-auto">
-          <table className="table">
-            {/* head */}
-            <thead>
-              <tr>
-                <th>Task</th>
-                <th>Status</th>
-                <th>Priority</th>
-              </tr>
-            </thead>
-            <tbody>
-              {statusCom?.map((item) => (
-                <tr key={item.id}>
-                  <td>
-                    <div className="flex items-center gap-3">
-                      <div>
-                        <div className="">{item.title}</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="badge badge-error cursor-pointer">{item.status}</td>
-                  <td>{item.priority}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div>
-        <h2 className="text-xl text-center font-semibold text-black">
-          OnGoing
         </h2>
         <div className="overflow-x-auto">
           <table className="table">
