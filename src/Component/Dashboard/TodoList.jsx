@@ -5,6 +5,7 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import UseTask from "../UseTask/UseTask";
 import swal from "sweetalert";
 import { FaEdit } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const TodoList = () => {
   const { user } = useContext(AuthContext);
@@ -13,13 +14,14 @@ const TodoList = () => {
 
   const userTask = tasks.filter((item) => item.email == user.email);
   const { register, handleSubmit, reset } = useForm();
+
   const onSubmit = (data) => {
     console.log(data);
     const title = data.title;
     const description = data.description;
     const deadline = data.date;
     const priority = data.priority;
-    const status = "pending";
+    const status = "todo";
     const email = user.email;
     const body = {
       title,
@@ -48,16 +50,7 @@ const TodoList = () => {
       }
     });
   };
-  const handleEdit = (id) => {
-    document.getElementById("my_modal_2").showModal()
-    axiosurl.patch(`/taskEd/${id}`).then((res) => {
-        console.log(res.data);
-        if (res.data.modifiedCount > 0) {
-          swal("Success", "Your task updated successfully", "success");
-          refetch();
-        }
-      });
-  }
+
 
   return (
     <div
@@ -79,83 +72,15 @@ const TodoList = () => {
                   </div>
                 </div>
                 <div className="mt-4">
-                  <div className="flex justify-between">
-                  <span className="text-white">Deadline: {item.deadline}</span>
-                   <button className="text-xl" onClick={()=> handleEdit()}><FaEdit></FaEdit></button>
-                   <dialog id="my_modal_2" className="modal">
-          <div className="modal-box bg-white p-8 rounded-md shadow-md max-w-md mx-auto">
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <h2 className="text-2xl font-semibold mb-4 text-gray-800">
-                Update a Task
-              </h2>
-
-              <div className="mb-4">
-                <label className="text-gray-700 block mb-2">Task Title</label>
-                <input
-                  type="text"
-                  className="form-input w-full px-4 py-2 border rounded-md"
-                  placeholder="Enter task title"
-                  defaultValue={item.title}
-                  {...register("title", { required: true })}
-                />
-              </div>
-
-              <div className="mb-4">
-                <label className="text-gray-700 block mb-2">
-                  Task Description
-                </label>
-                <textarea
-                  className="form-textarea w-full px-4 py-2 border rounded-md"
-                  rows="4"
-                  placeholder="Enter task description"
-                  defaultValue={item.description}
-                  {...register("description", { required: true })}
-                />
-              </div>
-
-              <div className="mb-4">
-                <label className="text-gray-700 block mb-2">Deadline</label>
-                <input
-                  type="date"
-                  className="form-input w-full px-4 py-2 border rounded-md"
-                  {...register("date", { required: true })}
-                />
-              </div>
-
-              <div className="mb-4">
-                <label className="text-gray-700 block mb-2">Priority</label>
-                <select
-                  {...register("priority", { required: true })}
-                  defaultValue={item.priority}
-                  className="form-select w-full px-4 py-2 border rounded-md"
-                >
-                  <option value="" disabled>
-                    Select priority
-                  </option>
-                  <option value="low">Low</option>
-                  <option value="moderate">Moderate</option>
-                  <option value="high">High</option>
-                </select>
-              </div>
-
-              <button
-                type="submit"
-                className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 w-full"
-              >
-                Create Task
-              </button>
-            </form>
-
-            <div className="modal-action absolute top-0 right-0 mt-2 mr-2">
-              <button
-                className="text-gray-600 hover:text-gray-800 text-lg"
-                onClick={() => document.getElementById("my_modal_2").close()}
-              >
-                &times;
-              </button>
-            </div>
-          </div>
-                   </dialog>
+                  <div className="flex justify-between gap-3">
+                    <span className="text-white">
+                      Deadline: {item.deadline}
+                    </span>
+                    <Link to={`/edit/${item._id}`}>
+                    <button className="text-xl">
+                      <FaEdit></FaEdit>
+                    </button>
+                    </Link>
                   </div>
                   <button
                     onClick={() => handleDelete(item._id)}

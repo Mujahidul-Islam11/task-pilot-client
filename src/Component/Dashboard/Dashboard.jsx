@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
-import { FaHome, FaTasks } from "react-icons/fa";
+import { FaBell, FaHome, FaTasks } from "react-icons/fa";
 import { BiTask } from "react-icons/bi";
 import Swal from "sweetalert2";
 
@@ -36,7 +36,13 @@ const Dashboard = () => {
       <li className="font-semibold">
         <NavLink to={"/dash/todo"}>
           <FaTasks className="text-xl"></FaTasks>
-          <span className="hidden md:block">To-Do List</span>
+          <span className="hidden md:block">Create Task</span>
+        </NavLink>
+      </li>
+      <li className="font-semibold">
+        <NavLink to={"/dash/notification"}>
+            <FaBell className="text-xl"></FaBell>
+          <span className="hidden md:block">Notification</span>
         </NavLink>
       </li>
       <li className="font-semibold">

@@ -36,9 +36,9 @@ const Navbar = () => {
       <li className="ml-4">
         <NavLink to={"/dis"}>Audience</NavLink>
       </li>
-      <li className="ml-4">
+      {user && <li className="ml-4">
         <NavLink to={"/dash/todo"}>Dashboard</NavLink>
-      </li>
+      </li>}
     </>
   );
   return (

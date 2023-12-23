@@ -1,4 +1,3 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -14,6 +13,8 @@ import TodoList from "./Component/Dashboard/TodoList.jsx";
 import DisplaySection from "./Component/DisplaySection/DisplaySection.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import PrivateRoute from "./PrivateRoute.jsx";
+import Edit from "./Component/Edit/Edit.jsx";
+import Notification from "./Component/Notification/Notification.jsx";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -56,16 +57,25 @@ const router = createBrowserRouter([
         path: 'task',
         element: <PrivateRoute><Task></Task></PrivateRoute>
       },
+      {
+        path: 'notification',
+        element: <PrivateRoute><Notification></Notification></PrivateRoute>
+      },
     ]
+  },
+  
+  {
+    path: '/edit/:id',
+    element: <PrivateRoute><Edit></Edit></PrivateRoute>
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-    <AuthProvider>
+
+  <AuthProvider>
+      <QueryClientProvider client={queryClient}>
     <RouterProvider router={router}></RouterProvider>
-    </AuthProvider>
     </QueryClientProvider>
-  </React.StrictMode>
+    </AuthProvider>
+
 );
